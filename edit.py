@@ -58,15 +58,6 @@ def ok_function():
 		ok.pack_forget()
 		path_capter.pack_forget()
 		Back.pack_forget()
-		s=""
-		if len(name)>3:
-			for j in range(1,4):
-				s=name[len(name)-j]+s
-			if s!=".py" and s!=".c":
-				if language=="C":
-					name+=".c"
-				else :
-					name+=".py"
 		os.system("touch "+ name)
 		f=open(name,"r")
 		s=""
@@ -88,8 +79,12 @@ def run_function():
 	global name
 	global language
 	if language=="C":
-		os.system("gcc " + name + " -o " + "abcd")
-		os.system("gnome-terminal -- ./abcd")
+		try:
+			os.system("gcc " + name + " -o " + "abcd")
+			os.system("gnome-terminal -- ./abcd")
+		except:
+			os.system("gcc " + name + " -lgraph -o " + "abcd")
+			os.system("gnome-terminal -- ./abcd")
 	else:
 		os.system("gnome-terminal -- python3 " + name)	
 def home():
@@ -117,3 +112,5 @@ Back.config(command=go_back)
 c_button.pack()
 python_button.pack()
 window.mainloop()
+while(1):
+   input()
